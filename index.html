@@ -1,0 +1,144 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha512-bnIvzh6FU75ZKxp0GXLH9bewza/OIw6dLVh9ICg0gogclmYGguQJWl8U30WpbsGTqbIiAwxTsbe76DErLq5EDQ==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<h1>
+    메이플 큐브 시뮬레이터
+  </h1>
+  <div id="init-area">
+    <h3>
+      초기화하기
+    </h3>
+    <form action="Javascript: fnObj.initItem();">
+      아이템 종류 <select id="item-type">
+        <option value="weapon">무기</option>
+        <option value="emblem">엠블렘</option>
+        <option value="subWeapon">보조무기</option>
+        <option value="subWeapon_forceShield_soulRing">보조무기(포스실드, 소울링)</option>
+        <option value="subWeapon_shield">보조무기(방패)</option>
+        <option value="head">모자</option>
+        <option value="upper_armor">상의</option>
+        <option value="armor">한벌옷</option>
+        <option value="lower_armor">하의</option>
+        <option value="shoes">신발</option>
+        <option value="gloves">장갑</option>
+        <option value="accessory1">망토,벨트,어깨장식</option>
+        <option value="accessory2">얼굴장식,눈장식,귀고리,반지,펜던트</option>
+        <option value="metal_heart">기계심장</option>
+      </select>
+      윗잠등급 <select id="item-upper-ability-type">
+        <option value="rare">레어</option>
+        <option value="epic">에픽</option>
+        <option value="unique">유니크</option>
+        <option value="legendary">레전더리</option>
+      </select>
+      아랫잠등급 <select id="item-lower-ability-type">
+        <option value="rare">레어</option>
+        <option value="epic">에픽</option>
+        <option value="unique">유니크</option>
+        <option value="legendary">레전더리</option>
+      </select>
+      <br>
+      아이템 렙제 <select id="item-level">
+        <option>200</option>
+        <option>160</option>
+        <option>150</option>
+        <option>145</option>
+        <option>140</option>
+        <option>135</option>
+        <option>130</option>
+        <option>120</option>
+        <option>110</option>
+        <option>105</option>
+        <option>100</option>
+        <option>90</option>
+        <option>85</option>
+        <option>80</option>
+        <option>75</option>
+        <option>70</option>
+        <option>65</option>
+        <option>60</option>
+        <option>55</option>
+        <option>50</option>
+        <option>45</option>
+        <option>40</option>
+        <option>35</option>
+        <option>30</option>
+      </select>
+      아이템 이름 : <input type="text" id="item-name" style="width: 350px">
+      <input type="submit" value="실행">
+    </form>
+  </div>
+  
+  <div id="item-info-area">
+    <div id="item-info-icon">
+  
+    </div>
+    <h2 id="item-info-name">
+      초기화를 먼저 진행해주세요
+    </h2>
+    <div id="item-info-upper-ability">
+      <span class="upper rare">레어등급</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div id="item-info-lower-ability">
+      <span class="lower rare">레어등급</span>
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    큐브 사용하기 -> <button onclick="fnObj.run('redCube')">레드큐브</button>
+    <button onclick="fnObj.run('blackCube')">블랙큐브</button>
+    <button onclick="fnObj.run('additionalCube')">에디큐브</button>
+  </div>
+  
+  <div id="report-area">
+    <h3>
+      현재까지 누적 재화사용량
+    </h3>
+    <div>
+      <span title="개당 900원">레드큐브</span> : <span id="red-qtt">0</span>개 (<span id="red-price">0</span>원)
+    </div>
+    <div>
+      <span title="개당 1650원">블랙큐브</span> : <span id="black-qtt">0</span>개 (<span id="black-price">0</span>원)
+    </div>
+    <div>
+      <span title="개당 1890원">에디큐브</span> : <span id="additional-qtt">0</span>개 (<span id="additional-price">0</span>원)
+    </div>
+    <div>
+      총 <span id="total-price">0</span>원
+    </div>
+    <br>
+    <div>
+      잠재능력 재설정 비용 : <span id="meso-qtt">0</span>메소
+    </div>
+  </div>
+  
+  <div id="log-area">
+    <h3>
+      실행로그 (새로고침 시 초기화됨!)
+    </h3>
+    <div style="height: 500px; overflow: scroll;">
+      <table style="width: 100%;">
+        <thead>
+          <tr>
+            <th>순번</th>
+            <th>큐브종류</th>
+            <th>첫째줄</th>
+            <th>둘째줄</th>
+            <th>셋째줄</th>
+          </tr>
+        </thead>
+        <tbody>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
